@@ -702,9 +702,6 @@
   </div>
   <div class="contact-wrap">
     <form id="contact-form">
-      <input type="hidden" name="access_key" value="PASTE_YOUR_KEY_HERE">
-      <input type="hidden" name="from_name" value="Portfolio website">
-      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
       <div class="form-grid">
         <input type="text" name="name" placeholder="Full Name" required>
         <input type="email" name="email" placeholder="Email Address" required>
@@ -712,8 +709,8 @@
         <input type="text" name="subject" placeholder="Subject">
         <textarea class="full" name="message" placeholder="Your Message" required></textarea>
       </div>
-      <button type="submit" class="btn" id="send-btn">Send Message</button>
-      <p id="form-status" role="status" style="margin-top:14px;text-align:center;font-size:14px;"></p>
+      <button type="submit" class="btn" id="send-btn">Send Email</button>
+      <p id="form-status" role="status" style="margin-top:14px;text-align:center;font-size:14px;">Opens your email app with your message ready to send.</p>
     </form>
     <div class="contact-info">
       <div>
@@ -721,7 +718,7 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7L22 6"/></svg>
         </div>
         <div class="lbl">Email</div>
-        <div class="val">janiduperera762@gmail.com</div>
+        <div class="val"><a href="mailto:janiduperera762@gmail.com">janiduperera762@gmail.com</a></div>
       </div>
       <div>
         <div class="ic">
@@ -1202,24 +1199,21 @@ window.__reveal = function(){
   window.addEventListener('load', ()=>{ setTimeout(()=>{ if(window.startGlobe) window.startGlobe(); if(window.__reveal && document.body.classList.contains('loaded')) window.__reveal(); }, 12000); });
 </script>
 <script>
-document.getElementById('contact-form').addEventListener('submit', async e => {
+document.getElementById('contact-form').addEventListener('submit', e => {
   e.preventDefault();
-  const form = e.target, btn = document.getElementById('send-btn'), status = document.getElementById('form-status');
-  btn.disabled = true; btn.textContent = 'Sending...'; status.textContent = '';
-  try {
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form)
-    });
-    const data = await res.json();
-    if (!data.success) throw new Error(data.message);
-    status.style.color = '#ffffff';
-    status.textContent = "Message sent! I'll reply soon.";
-    form.reset();
-  } catch (err) {
-    status.style.color = '#b8b8b8';
-    status.textContent = 'Could not send. Please email me directly.';
-  }
-  btn.disabled = false; btn.textContent = 'Send Message';
+  const data = new FormData(e.target);
+  const subject = String(data.get('subject') || '').trim() || 'Portfolio enquiry';
+  const body = [
+    'Name: ' + data.get('name'),
+    'Email: ' + data.get('email'),
+    'Phone: ' + (data.get('phone') || 'Not provided'),
+    '',
+    data.get('message')
+  ].join('\r\n');
+  window.location.href = 'mailto:janiduperera762@gmail.com?subject=' +
+    encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  document.getElementById('form-status').textContent =
+    'Send the draft in your email app to finish. You can also email janiduperera762@gmail.com directly.';
 });
 </script>
 </body>
