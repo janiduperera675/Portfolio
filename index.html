@@ -9,16 +9,17 @@
 <script defer id="three-js" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
   :root{
-    --bg-0:#080808;
-    --bg-1:#111111;
-    --bg-2:#1b1b1b;
-    --bg-3:#262626;
-    --accent:#ffffff;
-    --accent-dim:#cccccc;
-    --text-0:#f5f5f5;
-    --text-1:#b8b8b8;
-    --text-2:#909090;
-    --border:#333333;
+    /* Forest, deep green, teal, sage/khaki, and pale mint palette. */
+    --bg-0:#051f20;
+    --bg-1:#0b2b26;
+    --bg-2:#12382f;
+    --bg-3:#235347;
+    --accent:#b7c4a0;
+    --accent-dim:#b7c4a0;
+    --text-0:#daf1de;
+    --text-1:#b7c4a0;
+    --text-2:#a2b79d;
+    --border:#356557;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -35,14 +36,14 @@
   }
   #cursor-dot{
     position:fixed;top:0;left:0;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%;
-    background:#fff;pointer-events:none;z-index:9999;
+    background:#daf1de;pointer-events:none;z-index:9999;
     will-change:transform;opacity:0;transition:opacity .25s ease;
-    box-shadow:0 0 6px #fff, 0 0 14px var(--accent), 0 0 24px var(--accent);
+    box-shadow:0 0 6px #daf1de, 0 0 14px var(--accent), 0 0 24px var(--accent);
   }
   #cursor-glow{
     position:fixed;top:0;left:0;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;
     pointer-events:none;z-index:9998;opacity:0;will-change:transform,opacity;
-    background:radial-gradient(circle, rgba(255,255,255,0.6), rgba(255,255,255,0.15) 50%, transparent 75%);
+    background:radial-gradient(circle, rgba(142,182,155,0.6), rgba(142,182,155,0.15) 50%, transparent 75%);
   }
   a,button,.btn,.proj-card,.service-card,.burger,input,textarea{cursor:none;}
   body.cursor-ready #cursor-dot{opacity:1;}
@@ -60,8 +61,8 @@
   .bg-glow{
     position:fixed;inset:0;z-index:0;pointer-events:none;
     background:
-      radial-gradient(600px 400px at 85% 8%, rgba(255,255,255,0.08), transparent 60%),
-      radial-gradient(500px 350px at 10% 60%, rgba(255,255,255,0.05), transparent 60%);
+      radial-gradient(600px 400px at 85% 8%, rgba(142,182,155,0.08), transparent 60%),
+      radial-gradient(500px 350px at 10% 60%, rgba(142,182,155,0.05), transparent 60%);
   }
 
   /* NAV */
@@ -69,7 +70,7 @@
     position:sticky;top:0;z-index:50;
     display:flex;align-items:center;justify-content:space-between;
     padding:22px 6vw;
-    background:rgba(8,8,8,0.92);
+    background:rgba(5,31,32,0.92);
     border-bottom:1px solid var(--border);
   }
   .logo{font-weight:700;font-size:20px;letter-spacing:0.3px;}
@@ -123,7 +124,7 @@
     background:var(--accent);color:var(--bg-0);border:1px solid var(--accent);
     cursor:pointer;transition:.25s;
   }
-  .btn:hover{background:transparent;color:var(--accent);box-shadow:0 0 22px rgba(255,255,255,0.35);}
+  .btn:hover{background:transparent;color:var(--accent);box-shadow:0 0 22px rgba(142,182,155,0.35);}
   .btn.ghost{background:transparent;color:var(--text-0);border:1px solid var(--border);}
   .btn.ghost:hover{border-color:var(--accent);color:var(--accent);}
 
@@ -139,7 +140,7 @@
   .hex-photo{
     width:340px;height:392px;
     clip-path:polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    background:#141414;
+    background:#0b2b26;
     position:relative;z-index:2;
   }
   .hex-photo img{width:100%;height:100%;object-fit:cover;}
@@ -147,13 +148,13 @@
     position:absolute;width:340px;height:392px;
     clip-path:polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     background:transparent;
-    box-shadow:0 0 70px 6px rgba(255,255,255,0.45);
+    box-shadow:0 0 70px 6px rgba(142,182,155,0.45);
     z-index:1;
   }
   .hex-ring{
     position:absolute;width:390px;height:450px;
     clip-path:polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    border:1px solid rgba(255,255,255,0.35);
+    border:1px solid rgba(142,182,155,0.35);
     z-index:0;
   }
   .code-chip{
@@ -211,7 +212,7 @@
     box-shadow:0 16px 40px rgba(0,0,0,0.35);
   }
   .service-icon{
-    width:52px;height:52px;border-radius:10px;background:rgba(255,255,255,0.10);
+    width:52px;height:52px;border-radius:10px;background:rgba(142,182,155,0.10);
     display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:var(--accent);
   }
   .service-card h4{font-size:18px;margin-bottom:12px;}
@@ -237,7 +238,7 @@
   }
   .proj-thumb::after{
     content:'';position:absolute;inset:0;
-    background:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.18), transparent 60%);
+    background:radial-gradient(circle at 30% 20%, rgba(142,182,155,0.18), transparent 60%);
   }
   .proj-body{padding:20px 22px 24px;}
   .proj-body h4{font-size:15.5px;margin-bottom:6px;}
@@ -254,7 +255,7 @@
     padding:14px 16px;color:var(--text-0);font-family:'Inter',sans-serif;font-size:14px;
     outline:none;transition:.25s;
   }
-  input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,255,255,0.12);}
+  input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(142,182,155,0.12);}
   textarea{resize:vertical;min-height:120px;}
   .contact-wrap .btn{margin-top:20px;width:100%;justify-content:center;}
   button.btn{font-family:inherit;}
@@ -309,8 +310,8 @@
   #loader::before{
     content:'';position:absolute;inset:0;pointer-events:none;
     background:
-      radial-gradient(520px 340px at 50% 38%, rgba(255,255,255,0.14), transparent 65%),
-      radial-gradient(400px 300px at 85% 90%, rgba(255,255,255,0.07), transparent 60%);
+      radial-gradient(520px 340px at 50% 38%, rgba(142,182,155,0.14), transparent 65%),
+      radial-gradient(400px 300px at 85% 90%, rgba(142,182,155,0.07), transparent 60%);
   }
   #loader.done{transform:translateY(-100%);pointer-events:none;}
   #loader > *{position:relative;}
@@ -334,8 +335,8 @@
     animation:lineType 3.2s ease-in-out infinite;
   }
   .dev-scene .cl.a{background:var(--accent);}
-  .dev-scene .cl.b{background:#b8b8b8;}
-  .dev-scene .cl.c{background:#909090;}
+  .dev-scene .cl.b{background:#b7c4a0;}
+  .dev-scene .cl.c{background:#a2b79d;}
   @keyframes lineType{0%{transform:scaleX(0)}35%,85%{transform:scaleX(1)}100%{transform:scaleX(0)}}
   .dev-scene .gl{position:absolute;transform:translateX(-50%);pointer-events:none;}
   .dev-scene .gl b{
@@ -364,8 +365,8 @@
     color:var(--text-1);white-space:pre;overflow:hidden;
   }
   .term-body .kw{color:var(--accent);}
-  .term-body .str{color:#d4d4d4;}
-  .term-body .fn{color:#f5f5f5;}
+  .term-body .str{color:#b7c4a0;}
+  .term-body .fn{color:#daf1de;}
   .term-body .cm{color:var(--text-2);}
   .caret{
     display:inline-block;width:7px;height:14px;background:var(--accent);
@@ -424,27 +425,27 @@
     <svg class="layer" viewBox="0 0 340 230">
       <ellipse cx="170" cy="222" rx="140" ry="6" fill="#000" opacity=".35"/>
       <!-- desk -->
-      <rect x="134" y="150" width="196" height="7" rx="3" style="fill:#262626"/>
-      <rect x="146" y="157" width="6" height="62" style="fill:#1b1b1b"/>
-      <rect x="316" y="157" width="6" height="62" style="fill:#1b1b1b"/>
+      <rect x="134" y="150" width="196" height="7" rx="3" style="fill:#235347"/>
+      <rect x="146" y="157" width="6" height="62" style="fill:#12382f"/>
+      <rect x="316" y="157" width="6" height="62" style="fill:#12382f"/>
       <!-- chair -->
-      <rect x="48" y="104" width="9" height="64" rx="4.5" style="fill:#333333"/>
-      <rect x="48" y="162" width="74" height="9" rx="4.5" style="fill:#333333"/>
-      <rect x="82" y="171" width="5" height="34" style="fill:#333333"/>
-      <rect x="58" y="204" width="54" height="6" rx="3" style="fill:#333333"/>
+      <rect x="48" y="104" width="9" height="64" rx="4.5" style="fill:#356557"/>
+      <rect x="48" y="162" width="74" height="9" rx="4.5" style="fill:#356557"/>
+      <rect x="82" y="171" width="5" height="34" style="fill:#356557"/>
+      <rect x="58" y="204" width="54" height="6" rx="3" style="fill:#356557"/>
       <!-- legs -->
-      <rect x="84" y="156" width="68" height="15" rx="7" style="fill:#454545"/>
-      <rect x="142" y="162" width="14" height="48" rx="6" style="fill:#454545"/>
-      <path d="M140 208h26a4 4 0 0 1 4 4v2h-30z" style="fill:#e8e8e8"/>
+      <rect x="84" y="156" width="68" height="15" rx="7" style="fill:#235347"/>
+      <rect x="142" y="162" width="14" height="48" rx="6" style="fill:#235347"/>
+      <path d="M140 208h26a4 4 0 0 1 4 4v2h-30z" style="fill:#daf1de"/>
       <!-- monitor -->
-      <rect x="258" y="140" width="12" height="9" style="fill:#333333"/>
-      <rect x="244" y="147" width="40" height="3" rx="1.5" style="fill:#333333"/>
-      <rect x="206" y="60" width="116" height="80" rx="6" style="fill:#111111;stroke:#333333;stroke-width:2"/>
-      <rect x="212" y="66" width="104" height="68" rx="3" style="fill:#080808"/>
+      <rect x="258" y="140" width="12" height="9" style="fill:#356557"/>
+      <rect x="244" y="147" width="40" height="3" rx="1.5" style="fill:#356557"/>
+      <rect x="206" y="60" width="116" height="80" rx="6" style="fill:#0b2b26;stroke:#356557;stroke-width:2"/>
+      <rect x="212" y="66" width="104" height="68" rx="3" style="fill:#051f20"/>
       <!-- keyboard + mug -->
-      <rect x="168" y="146" width="68" height="4" rx="2" style="fill:#454545"/>
-      <rect x="292" y="138" width="12" height="12" rx="2" style="fill:#e8e8e8"/>
-      <path d="M304 141h3a3 3 0 0 1 0 6h-3" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+      <rect x="168" y="146" width="68" height="4" rx="2" style="fill:#235347"/>
+      <rect x="292" y="138" width="12" height="12" rx="2" style="fill:#daf1de"/>
+      <path d="M304 141h3a3 3 0 0 1 0 6h-3" fill="none" stroke="#daf1de" stroke-width="2"/>
     </svg>
 
     <!-- code lines on the monitor (HTML so they animate on the GPU) -->
@@ -462,25 +463,25 @@
     <!-- developer: upper body bobs, forearms tap -->
     <svg class="layer bob" viewBox="0 0 340 230">
       <path d="M70 160L74 112Q74 100 90 98Q106 98 108 112L112 160Z" style="fill:var(--accent)"/>
-      <rect x="87" y="93" width="10" height="9" style="fill:#888888"/>
-      <circle cx="92" cy="82" r="15" style="fill:#888888"/>
-      <circle cx="106" cy="85" r="3" style="fill:#888888"/>
-      <circle cx="88" cy="86" r="3" style="fill:#737373"/>
-      <circle cx="84" cy="70" r="8" style="fill:#202020"/>
-      <circle cx="94" cy="67" r="8" style="fill:#202020"/>
-      <circle cx="103" cy="72" r="7" style="fill:#202020"/>
-      <circle cx="79" cy="80" r="6" style="fill:#202020"/>
-      <circle cx="98" cy="82" r="1.6" style="fill:#fff"/>
-      <line x1="96" y1="112" x2="122" y2="134" stroke-width="11" stroke-linecap="round" style="stroke:#aaaaaa"/>
-      <line x1="92" y1="112" x2="118" y2="136" stroke-width="11" stroke-linecap="round" style="stroke:#cccccc"/>
+      <rect x="87" y="93" width="10" height="9" style="fill:#b7c4a0"/>
+      <circle cx="92" cy="82" r="15" style="fill:#b7c4a0"/>
+      <circle cx="106" cy="85" r="3" style="fill:#b7c4a0"/>
+      <circle cx="88" cy="86" r="3" style="fill:#92a989"/>
+      <circle cx="84" cy="70" r="8" style="fill:#051f20"/>
+      <circle cx="94" cy="67" r="8" style="fill:#051f20"/>
+      <circle cx="103" cy="72" r="7" style="fill:#051f20"/>
+      <circle cx="79" cy="80" r="6" style="fill:#051f20"/>
+      <circle cx="98" cy="82" r="1.6" style="fill:#daf1de"/>
+      <line x1="96" y1="112" x2="122" y2="134" stroke-width="11" stroke-linecap="round" style="stroke:#8eb69b"/>
+      <line x1="92" y1="112" x2="118" y2="136" stroke-width="11" stroke-linecap="round" style="stroke:#b7c4a0"/>
     </svg>
     <svg class="layer fa2" viewBox="0 0 340 230">
-      <line x1="122" y1="134" x2="184" y2="141" stroke-width="9" stroke-linecap="round" style="stroke:#aaaaaa"/>
-      <circle cx="187" cy="141" r="5" style="fill:#888888"/>
+      <line x1="122" y1="134" x2="184" y2="141" stroke-width="9" stroke-linecap="round" style="stroke:#8eb69b"/>
+      <circle cx="187" cy="141" r="5" style="fill:#b7c4a0"/>
     </svg>
     <svg class="layer fa1" viewBox="0 0 340 230">
-      <line x1="118" y1="136" x2="170" y2="143" stroke-width="9" stroke-linecap="round" style="stroke:#cccccc"/>
-      <circle cx="173" cy="143" r="5" style="fill:#888888"/>
+      <line x1="118" y1="136" x2="170" y2="143" stroke-width="9" stroke-linecap="round" style="stroke:#b7c4a0"/>
+      <circle cx="173" cy="143" r="5" style="fill:#b7c4a0"/>
     </svg>
   </div>
 
@@ -923,7 +924,7 @@ window.startGlobe = function(){
   renderer.setSize(window.innerWidth, window.innerHeight);
   yield;
 
-  const ACCENT = new THREE.Color(0xffffff);
+  const ACCENT = new THREE.Color(0x8eb69b);
   const RADIUS = 19;
 
   // ================= GLOBE GROUP =================
@@ -940,7 +941,7 @@ window.startGlobe = function(){
 
   // --- Solid faint core so the wireframe reads as a sphere, not just lines ---
   const coreGeo = new THREE.SphereGeometry(RADIUS*0.985, 32, 24);
-  const coreMat = new THREE.MeshBasicMaterial({color:0x141414, transparent:true, opacity:0.55});
+  const coreMat = new THREE.MeshBasicMaterial({color:0x0b2b26, transparent:true, opacity:0.55});
   const core = new THREE.Mesh(coreGeo, coreMat);
   globe.add(core);
   yield;
@@ -1013,9 +1014,9 @@ window.startGlobe = function(){
     const c = document.createElement('canvas'); c.width=c.height=256;
     const ctx = c.getContext('2d');
     const g = ctx.createRadialGradient(128,128,0,128,128,128);
-    g.addColorStop(0,'rgba(255,255,255,0.55)');
-    g.addColorStop(0.4,'rgba(255,255,255,0.18)');
-    g.addColorStop(1,'rgba(255,255,255,0)');
+    g.addColorStop(0,'rgba(142,182,155,0.55)');
+    g.addColorStop(0.4,'rgba(142,182,155,0.18)');
+    g.addColorStop(1,'rgba(142,182,155,0)');
     ctx.fillStyle=g; ctx.fillRect(0,0,256,256);
     return new THREE.CanvasTexture(c);
   }
@@ -1045,7 +1046,7 @@ window.startGlobe = function(){
   }
   const starGeo = new THREE.BufferGeometry();
   starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions,3));
-  const starMat = new THREE.PointsMaterial({color:0xcccccc, size:0.7, transparent:true, opacity:0.55, sizeAttenuation:true});
+  const starMat = new THREE.PointsMaterial({color:0xdaf1de, size:0.7, transparent:true, opacity:0.55, sizeAttenuation:true});
   const stars = new THREE.Points(starGeo, starMat);
   scene.add(stars);
 
@@ -1054,7 +1055,7 @@ window.startGlobe = function(){
   const STAR_MAX_LINES = STAR_COUNT*6;
   const starLinkPositions = new Float32Array(STAR_MAX_LINES*2*3);
   starLinkGeo.setAttribute('position', new THREE.BufferAttribute(starLinkPositions,3));
-  const starLinkMat = new THREE.LineBasicMaterial({color:0xffffff, transparent:true, opacity:0.16});
+  const starLinkMat = new THREE.LineBasicMaterial({color:0x8eb69b, transparent:true, opacity:0.16});
   const starLinkMesh = new THREE.LineSegments(starLinkGeo, starLinkMat);
   scene.add(starLinkMesh);
   yield;
@@ -1194,11 +1195,11 @@ document.getElementById('contact-form').addEventListener('submit', async e => {
     });
     const data = await res.json();
     if (!data.success) throw new Error(data.message);
-    status.style.color = '#f5f5f5';
+    status.style.color = '#daf1de';
     status.textContent = "Message sent! I'll reply soon.";
     form.reset();
   } catch (err) {
-    status.style.color = '#b8b8b8';
+    status.style.color = '#b7c4a0';
     status.textContent = 'Could not send. Please email me directly.';
   }
   btn.disabled = false; btn.textContent = 'Send Message';
