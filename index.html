@@ -164,6 +164,25 @@
     box-shadow:0 8px 24px rgba(0,0,0,0.4);
   }
 
+  /* Continuously looping language strip */
+  .languages{position:relative;z-index:1;padding:22px 0;background:var(--bg-1);border-top:1px solid var(--border);}
+  .languages-header{display:flex;align-items:center;justify-content:space-between;padding:0 6vw 18px;gap:16px;}
+  .languages h2{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--accent-dim);}
+  .languages-toggle{background:transparent;border:1px solid var(--border);border-radius:20px;padding:6px 12px;color:var(--text-1);font:12px 'Inter',sans-serif;}
+  .languages-toggle:hover,.languages-toggle:focus-visible{border-color:var(--accent);color:var(--text-0);}
+  .languages-window{overflow:hidden;mask-image:linear-gradient(to right,transparent,#000 6%,#000 94%,transparent);}
+  .languages-track{display:flex;width:max-content;animation:languagesScroll 28s linear infinite;}
+  .languages-group{display:flex;align-items:center;justify-content:space-around;gap:48px;min-width:100vw;flex-shrink:0;padding:8px 24px;list-style:none;}
+  .languages-group li{display:flex;align-items:center;gap:14px;white-space:nowrap;font:600 clamp(20px,3vw,32px) 'Poppins',sans-serif;color:var(--text-1);}
+  .languages-group li::before{content:'</>';font:14px 'JetBrains Mono',monospace;color:var(--accent);}
+  .languages:hover .languages-track,.languages:focus-within .languages-track,.languages.is-paused .languages-track{animation-play-state:paused;}
+  @keyframes languagesScroll{to{transform:translateX(-50%);}}
+  @media(prefers-reduced-motion:reduce){
+    .languages-track{animation:none;width:100%;}
+    .languages-group{min-width:0;width:100%;flex-wrap:wrap;gap:20px 32px;}
+    .languages-group[aria-hidden="true"],.languages-toggle{display:none;}
+  }
+
   /* SECTION HEADS */
   .sec-head{text-align:center;margin-bottom:56px;}
   .sec-head .tag{
@@ -435,6 +454,24 @@
   </div>
 </section>
 
+<!-- LANGUAGES -->
+<section class="languages" aria-labelledby="languages-title">
+  <div class="languages-header">
+    <h2 id="languages-title">Languages I work with</h2>
+    <button class="languages-toggle" type="button" aria-pressed="false">Pause scrolling</button>
+  </div>
+  <div class="languages-window">
+    <div class="languages-track">
+      <ul class="languages-group" aria-label="Programming and web languages">
+        <li>Java</li><li>JavaScript</li><li>SQL</li><li>HTML</li><li>CSS</li>
+      </ul>
+      <ul class="languages-group" aria-hidden="true">
+        <li>Java</li><li>JavaScript</li><li>SQL</li><li>HTML</li><li>CSS</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section class="about" id="about">
   <div class="about-grid">
@@ -627,6 +664,12 @@
 </footer>
 
 <script>
+document.querySelector('.languages-toggle').addEventListener('click', function(){
+  const paused = document.querySelector('.languages').classList.toggle('is-paused');
+  this.setAttribute('aria-pressed', String(paused));
+  this.textContent = paused ? 'Resume scrolling' : 'Pause scrolling';
+});
+
 (function(){
   const dot = document.getElementById('cursor-dot');
   const glow = document.getElementById('cursor-glow');
