@@ -174,7 +174,12 @@
   .languages-track{display:flex;width:max-content;animation:languagesScroll 28s linear infinite;}
   .languages-group{display:flex;align-items:center;justify-content:space-around;gap:48px;min-width:100vw;flex-shrink:0;padding:8px 24px;list-style:none;}
   .languages-group li{display:flex;align-items:center;gap:14px;white-space:nowrap;font:600 clamp(20px,3vw,32px) 'Poppins',sans-serif;color:var(--text-1);}
-  .languages-group li::before{content:'</>';font:14px 'JetBrains Mono',monospace;color:var(--accent);}
+  .languages-group svg{width:40px;height:40px;flex-shrink:0;}
+  .languages-group .language-java{color:#f5aa62;}
+  .languages-group .language-javascript{color:#f7df1e;}
+  .languages-group .language-sql{color:#64c9ed;}
+  .languages-group .language-html{color:#ff825b;}
+  .languages-group .language-css{color:#69a9ff;}
   .languages:hover .languages-track,.languages:focus-within .languages-track,.languages.is-paused .languages-track{animation-play-state:paused;}
   @keyframes languagesScroll{to{transform:translateX(-50%);}}
   @media(prefers-reduced-motion:reduce){
@@ -454,24 +459,6 @@
   </div>
 </section>
 
-<!-- LANGUAGES -->
-<section class="languages" aria-labelledby="languages-title">
-  <div class="languages-header">
-    <h2 id="languages-title">Languages I work with</h2>
-    <button class="languages-toggle" type="button" aria-pressed="false">Pause scrolling</button>
-  </div>
-  <div class="languages-window">
-    <div class="languages-track">
-      <ul class="languages-group" aria-label="Programming and web languages">
-        <li>Java</li><li>JavaScript</li><li>SQL</li><li>HTML</li><li>CSS</li>
-      </ul>
-      <ul class="languages-group" aria-hidden="true">
-        <li>Java</li><li>JavaScript</li><li>SQL</li><li>HTML</li><li>CSS</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
 <!-- ABOUT -->
 <section class="about" id="about">
   <div class="about-grid">
@@ -529,6 +516,24 @@
       <div class="level">
         <div class="bar-track"><div class="bar-fill" style="width:65%"></div></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section class="languages" aria-labelledby="languages-title">
+  <div class="languages-header">
+    <h2 id="languages-title">Languages I work with</h2>
+    <button class="languages-toggle" type="button" aria-pressed="false">Pause scrolling</button>
+  </div>
+  <div class="languages-window">
+    <div class="languages-track">
+      <ul class="languages-group" aria-label="Programming and web languages">
+        <li class="language-java"><svg aria-hidden="true" focusable="false" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 20h17v7a7 7 0 0 1-7 7h-3a7 7 0 0 1-7-7zM28 21h3a4 4 0 0 1 0 8h-3M8 37h25"/><path d="M18 17c-8-6 9-7 2-14M24 17c-5-4 7-5 4-10" stroke="#f89820"/></svg><span>Java</span></li><li class="language-javascript"><svg aria-hidden="true" focusable="false" viewBox="0 0 40 40"><rect width="40" height="40" rx="5" fill="currentColor"/><text x="35" y="32" text-anchor="end" fill="#151515" font-family="Arial,sans-serif" font-weight="700" font-size="23">JS</text></svg><span>JavaScript</span></li><li class="language-sql"><svg aria-hidden="true" focusable="false" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.5"><ellipse cx="20" cy="8" rx="14" ry="5"/><path d="M6 8v24c0 7 28 7 28 0V8M6 20c0 7 28 7 28 0"/></svg><span>SQL</span></li><li class="language-html"><svg aria-hidden="true" focusable="false" viewBox="0 0 40 40"><path fill="currentColor" d="M4 3h32l-3 31-13 4-13-4z"/><path fill="#fff" d="M11 10h19l-.5 5H16l.4 4h12.7L28 29l-8 2.5-8-2.5-.5-6h5l.2 2.5 3.3 1 3.4-1 .3-2.5H11.9z"/></svg><span>HTML</span></li><li class="language-css"><svg aria-hidden="true" focusable="false" viewBox="0 0 40 40"><path fill="currentColor" d="M4 3h32l-3 31-13 4-13-4z"/><path fill="#fff" d="M11 10h19l-.5 5-10 4h9.6L28 29l-8 2.5-8-2.5-.5-6h5l.2 2.5 3.3 1 3.4-1 .3-2.5H11.9l-.4-4 10-4H11.5z"/></svg><span>CSS</span></li>
+      </ul>
+      <ul class="languages-group" aria-hidden="true">
+        <li class="language-java"><svg aria-hidden="true" focusable="false" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 20h17v7a7 7 0 0 1-7 7h-3a7 7 0 0 1-7-7zM28 21h3a4 4 0 0 1 0 8h-3M8 37h25"/><path d="M18 17c-8-6 9-7 2-14M24 17c-5-4 7-5 4-10" stroke="#f89820"/></svg><span>Java</span></li><li class="language-javascript"><svg aria-hidden="true" focusable="false" viewBox="0 0 40 40"><rect width="40" height="40" rx="5" fill="currentColor"/><text x="35" y="32" text-anchor="end" fill="#151515" font-family="Arial,sans-serif" font-weight="700" font-size="23">JS</text></svg><span>JavaScript</span></li><li class="language-sql"><svg aria-hidden="true" focusable="false" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.5"><ellipse cx="20" cy="8" rx="14" ry="5"/><path d="M6 8v24c0 7 28 7 28 0V8M6 20c0 7 28 7 28 0"/></svg><span>SQL</span></li><li class="language-html"><svg aria-hidden="true" focusable="false" viewBox="0 0 40 40"><path fill="currentColor" d="M4 3h32l-3 31-13 4-13-4z"/><path fill="#fff" d="M11 10h19l-.5 5H16l.4 4h12.7L28 29l-8 2.5-8-2.5-.5-6h5l.2 2.5 3.3 1 3.4-1 .3-2.5H11.9z"/></svg><span>HTML</span></li><li class="language-css"><svg aria-hidden="true" focusable="false" viewBox="0 0 40 40"><path fill="currentColor" d="M4 3h32l-3 31-13 4-13-4z"/><path fill="#fff" d="M11 10h19l-.5 5-10 4h9.6L28 29l-8 2.5-8-2.5-.5-6h5l.2 2.5 3.3 1 3.4-1 .3-2.5H11.9l-.4-4 10-4H11.5z"/></svg><span>CSS</span></li>
+      </ul>
     </div>
   </div>
 </section>
